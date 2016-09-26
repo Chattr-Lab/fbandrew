@@ -9,12 +9,6 @@ var token = "EAAZAf5qexdTIBAIZCR7gjZCTUfVdfXAMttxYyL5iw1tCTypQMP6BtYcsoSsTxbNAXZ
 
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-
-    res.send('Hello World! This is the bot\'s root endpoint!');
-
-});
-
 app.get('/webhook/', function (req, res) {
 
     if (req.query['hub.verify_token'] === verify_token) {
@@ -24,6 +18,13 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong validation token');
 
 });
+
+app.get('/', function (req, res) {
+
+    res.send('Hello World! This is the bot\'s root endpoint!');
+
+});
+
 
 app.post('/webhook/', function (req, res) {
 
