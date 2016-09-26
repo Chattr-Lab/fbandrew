@@ -19,12 +19,13 @@ app.get('/webhook/', function (req, res) {
 
 });
 
+/*
 app.get('/', function (req, res) {
 
     res.send('Hello World! This is the bot\'s root endpoint!');
 
 });
-
+*/
 
 app.post('/webhook/', function (req, res) {
 
