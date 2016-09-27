@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
-            if (text.has("Trump")) {
+            if (text.contains("Trump")) {
                 var reply= trumpSays()
                 sendTextMessage(sender, "Trump says: " + reply);
             }
