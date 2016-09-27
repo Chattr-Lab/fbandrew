@@ -4,8 +4,8 @@ var request = require('request');
 var app = express();
 
 // You MUST change these values, consult the Messenger Platform Getting Started guide
-var verify_token = 'prrr';
-var token = "EAAZAf5qexdTIBAIZCR7gjZCTUfVdfXAMttxYyL5iw1tCTypQMP6BtYcsoSsTxbNAXZBjdgfiWaOpAj836ORPsS0VttP8ZCPMZBnAkbcrkXUk36kvL5SlC9LcnFls0fuhlplNM24lEWZBV5NaSlEDsyTl8VsXYLtZAG7Gt96WSVdT5gZDZD";
+var verify_token = process.env.FB_VERIFY_TOKEN;
+var token = process.env.FB_PAT;
 
 app.use(bodyParser.json());
 
