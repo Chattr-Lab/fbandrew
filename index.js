@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
-            if (text.indexOf("Trump") > -1) {
+            if (text.indexOf("Trump") > -1||text.indexOf("trump") > -1) {
                 var reply= trumpSays()
                 sendTextMessage(sender, "Trump says: " + reply);
             }
