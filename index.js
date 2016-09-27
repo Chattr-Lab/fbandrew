@@ -38,7 +38,7 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
             text = text.toLowerCase();
-            if (text === 'Generic') {
+            if (text === 'generic') {
                 sendGenericMessage(sender)
                 continue
             }
