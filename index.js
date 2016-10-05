@@ -58,10 +58,10 @@ app.post('/webhook/', function (req, res) {
             if(text){
 
                 var input = parseText(text);
-                if (input == 'text') {
+                if (input == 'news') {
                     sendGenericMessage(sender,input);
                 }
-                else if ( input == "greetings" || "random") {
+                else if ( input == "greetings" || input == "random") {
                     sendTextMessage(sender,input)
                 }
             }
