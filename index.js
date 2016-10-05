@@ -6,6 +6,7 @@ var url = require('url');
 
 var verify_token = process.env.FB_VERIFY_TOKEN;
 var token = process.env.FB_PAT;
+var newsApiKey = process.env.NEWS_API_KEY;
 
 app.use(bodyParser.json());
 
@@ -58,7 +59,7 @@ app.post('/webhook/', function (req, res) {
             if(text){
 
                 var input = parseText(text);
-                if (input == 'news') {
+                if (input.indexOf('news') > -1) {
                     sendGenericMessage(sender,input);
                 }
                 else if ( input == 'greetings') {
@@ -123,12 +124,12 @@ function parseText(text) {
 
     //business, entertainment, gaming, general, music, science-and-nature, sport, technology.
     var categories = ['business','entertainment','music','science','sport','tech'];
-    var greetings = ['hey','hi','hello','whats up?']
+    var greetings = ['hey','hi','hello','whats up?'];
     var input;
     if (text.indexOf('@') == 0) {
         for (var i in categories) {
             if (text.indexOf(categories[i]) == 1) {
-                  input = 'news';
+                  input = categories [i]+' news';
             }
             continue;
         }
@@ -139,9 +140,9 @@ function parseText(text) {
                 input = 'greetings';
             }
             else {
-                input = 'random'
+                input = 'random' ;
             }
-            continue
+            continue;
         }
     }
 
@@ -185,8 +186,31 @@ function trumpSays() {
 
 }
 
+function getSource(category) {
+    return category;
+}
+
 function sendGenericMessage(sender,input) {
-    var messageData = {
+
+    //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
+    var messageData = {};
+    var baseUrl = "https://newsapi.org/v1/articles";
+    var category
+    if (category = input.substring(0,input.indexOf('news'))) {
+        var source = getSource(category);
+        var processedUrl = baseUrl + '?source=espn&sortBy=top&apiKey=' + newsApiKey;
+        request({
+            url: processedUrl,
+            json: true
+        }, function (error, response, body) {
+
+            if (!error && response.statusCode === 200) {
+               messageData = body;
+            }
+        })
+
+    }
+    /*var messageData = {
         "attachment": {
             "type": "template",
             "payload": {
@@ -216,7 +240,7 @@ function sendGenericMessage(sender,input) {
                 }]
             }
         }
-    }
+    }*/
     request({
         url: 'https://graph.facebook.com/v2.8/me/messages',
         qs: {access_token:token},
