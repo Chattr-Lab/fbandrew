@@ -210,6 +210,7 @@ function sendGenericMessage(sender,input) {
         })
 
     }
+    console.log(messageData);
     /*var messageData = {
         "attachment": {
             "type": "template",
