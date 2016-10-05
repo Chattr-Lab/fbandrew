@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
+var url = require('url');
 
-// You MUST change these values, consult the Messenger Platform Getting Started guide
 var verify_token = process.env.FB_VERIFY_TOKEN;
 var token = process.env.FB_PAT;
 
@@ -38,11 +38,11 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
             text = text.toLowerCase();
-            if (text === 'generic') {
+            /*if (text === 'generic') {
                 sendGenericMessage(sender)
                 continue
             }
-            if (text.indexOf("@trump") > -1) {
+            if (text.indexOf("@trump") > -1) { //if input text starts with "@trump"
 
                 var reply= trumpSays()
                 sendTextMessage(sender, "Trump says: " + reply);
@@ -54,6 +54,16 @@ app.post('/webhook/', function (req, res) {
                 text = JSON.stringify(event.postback)
                 sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
                 continue
+            }*/
+            if(text){
+
+                var input = parseText(text);
+                if (input = 'text') {
+                    sendGenericMessage(sender,input);
+                }
+                else if ( input = "greetings" || "random") {
+                    sendTextMessage(sender,input)
+                }
             }
             //sendTextMessage(sender, "Echo: " + text.substring(0, 200));
         }
@@ -68,12 +78,23 @@ app.listen(process.env.PORT || 1337, function () {
     console.log('Facebook Messenger echoing bot started on port 1337!');
 
 });
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
-function sendTextMessage(sender, text) {
+function sendTextMessage(sender, input) {
 
-    var messageData = {
-        text: text
-    };
+    var messageData;
+    var greeting =["Hey!","Hello!","Hi there!"];
+    var random = ["I didn't quite get it","I'm too smart to reply for that, try something else","try '@sport news' to get latest sport news"]
+    if (input == 'greetings') {
+        messageData = greeting[getRandomInt(0,2)];
+    }
+    else if (input == 'random') {
+        messageData = random[getRandomInt(0,2)];
+    }
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -94,6 +115,35 @@ function sendTextMessage(sender, text) {
     });
 
 }
+
+function parseText(text) {
+
+    //business, entertainment, gaming, general, music, science-and-nature, sport, technology.
+    var categories = ['business','entertainment','music','science','sport','tech'];
+    var greetings = ['hey','hi','hello','whats up?']
+    var input;
+    if (text.indexOf('@') == 0) {
+        for (var i in categories) {
+            if (text.indexOf(categories[i]) == 1) {
+                  input = 'news';
+            }
+            continue;
+        }
+    }
+    else if (text) {
+        for (var j in greetings) {
+            if (text.indexOf(greetings[j]) > -1) {
+                input = 'greetings';
+            }
+            continue
+        }
+    }
+    else {
+        input = 'random'
+    }
+
+    return input;
+};
 
 function trumpSays() {
     var DTquotes = [
@@ -131,8 +181,8 @@ function trumpSays() {
 
 }
 
-function sendGenericMessage(sender) {
-    messageData = {
+function sendGenericMessage(sender,input) {
+    var messageData = {
         "attachment": {
             "type": "template",
             "payload": {
