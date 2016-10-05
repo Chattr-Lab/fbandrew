@@ -89,15 +89,15 @@ function getRandomInt(min, max) {
 
 function sendTextMessage(sender, input) {
 
-    var messageData;
+    var messageData=input;
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
-    if (input == 'greetings') {
+   /* if (input == 'greetings') {
         messageData = greeting[0];
     }
     else if (input == 'random') {
         messageData = random[0];
-    }
+    }*/
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
