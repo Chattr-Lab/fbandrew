@@ -90,7 +90,7 @@ function getRandomInt(min, max) {
 function sendTextMessage(sender, input) {
 
     var messageData=input;
-    
+    console.log(input);
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
     if (input == 'greetings') {
