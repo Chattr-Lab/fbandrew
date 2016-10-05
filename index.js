@@ -64,6 +64,9 @@ app.post('/webhook/', function (req, res) {
                 else if ( input == "greetings") {
                     sendTextMessage(sender,input)
                 }
+                else if (input) == "random") {
+                    sendTextMessage(sender,input)
+                }
             }
             //sendTextMessage(sender, "Echo: " + text.substring(0, 200));
         }
@@ -90,10 +93,10 @@ function sendTextMessage(sender, input) {
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
     if (input == 'greetings') {
-        messageData = greeting[getRandomInt(0,2)];
+        messageData = greeting[0];
     }
     else if (input == 'random') {
-        messageData = random[getRandomInt(0,2)];
+        messageData = random[0];
     }
 
     request({
@@ -214,7 +217,7 @@ function sendGenericMessage(sender,input) {
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v2.8/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
