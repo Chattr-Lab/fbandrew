@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
                 if (input == 'news') {
                     sendGenericMessage(sender,input);
                 }
-                else if ( input == "greetings" || input == "random") {
+                else if ( input == "greetings") {
                     sendTextMessage(sender,input)
                 }
             }
@@ -88,7 +88,7 @@ function sendTextMessage(sender, input) {
 
     var messageData;
     var greeting =["Hey!","Hello!","Hi there!"];
-    var random = ["I didn't quite get it","I'm too smart to reply for that, try something else","try '@sport news' to get latest sport news"]
+    var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
     if (input == 'greetings') {
         messageData = greeting[getRandomInt(0,2)];
     }
