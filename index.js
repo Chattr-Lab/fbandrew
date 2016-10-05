@@ -62,10 +62,10 @@ app.post('/webhook/', function (req, res) {
                     sendGenericMessage(sender,input);
                 }
                 else if ( input == 'greetings') {
-                    sendTextMessage(sender,input)
+                    sendTextMessage(sender,input);
                 }
                 else if (input == 'random') {
-                    sendTextMessage(sender,input)
+                    sendTextMessage(sender,input);
                 }
             }
             //sendTextMessage(sender, "Echo: " + text.substring(0, 200));
@@ -90,6 +90,7 @@ function getRandomInt(min, max) {
 function sendTextMessage(sender, input) {
 
     var messageData=input;
+    
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
     if (input == 'greetings') {
