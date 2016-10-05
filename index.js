@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
                 else if ( input == "greetings") {
                     sendTextMessage(sender,input)
                 }
-                else if (input) == "random") {
+                else if (input == "random") {
                     sendTextMessage(sender,input)
                 }
             }
