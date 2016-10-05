@@ -205,8 +205,8 @@ function sendGenericMessage(sender,input) {
             url: processedUrl,
             json: true
         }, function (error, response, body) {
-            console.log(error);
-            console.log(response.body.error);
+
+            console.log(body);
             if (!error && response.statusCode === 200) {
                messageData = body;
             }
