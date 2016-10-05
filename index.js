@@ -138,12 +138,13 @@ function parseText(text) {
             if (text.indexOf(greetings[j]) > -1) {
                 input = 'greetings';
             }
+            else {
+                input = 'random'
+            }
             continue
         }
     }
-    else {
-        input = 'random'
-    }
+
 
     return input;
 };
