@@ -93,10 +93,10 @@ function sendTextMessage(sender, input) {
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
     if (input == 'greetings') {
-        messageData = {text: greeting[0]};
+        messageData = {text: greeting[getRandomInt(0,2)]};
     }
     else if (input == 'random') {
-        messageData = {text: random[0]};
+        messageData = {text: random[getRandomInt(0,2)]};
     }
 
     request({
