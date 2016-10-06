@@ -192,8 +192,8 @@ function getSource(category) {
 
 function getMessageData(topNews) {
     var stringToWorkWith=JSON.parse(topNews);
-    stringToWorkWith=stringToWorkWith["articles"];
-
+    //stringToWorkWith = stringToWorkWith["articles"];
+    console.log(stringToWorkWith["articles"]);
     return stringToWorkWith;
 }
 
@@ -223,7 +223,7 @@ function sendGenericMessage(sender,input) {
 
     messageData=getMessageData(topNews);
 
-    console.log(messageData);
+    //console.log(messageData);
     /*var messageData = {
         "attachment": {
             "type": "template",
