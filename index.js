@@ -190,10 +190,18 @@ function getSource(category) {
     return category;
 }
 
+function getMessageData(topNews) {
+    var stringToWorkWith=JSON.parse(topNews);
+    stringToWorkWith=stringToWorkWith["articles"];
+
+    return stringToWorkWith;
+}
+
 function sendGenericMessage(sender,input) {
 
     //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
-    var messageData = {};
+    var messageData;
+    var topNews={};
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
     console.log(input.substring(0,input.indexOf('news')));
@@ -208,11 +216,13 @@ function sendGenericMessage(sender,input) {
 
             console.log(body);
             if (!error && response.statusCode === 200) {
-               messageData = body;
+               topNews = body;
             }
         })
-
     }
+
+    messageData=getMessageData(topNews);
+
     console.log(messageData);
     /*var messageData = {
         "attachment": {
