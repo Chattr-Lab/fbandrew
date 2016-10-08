@@ -27,6 +27,26 @@ app.get('/', function (req, res) {
     //res.send(req.query['hub.challenge'])
 });
 
+app.post('/', function (req, res) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: token},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message: "foo"
+        }
+    }, function (error, response) {
+
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+
+    });
+})
+
 app.post('/webhook/', function (req, res) {
 
     var messaging_events = req.body.entry[0].messaging;
@@ -193,7 +213,7 @@ function getSource(category) {
 function getMessageData(topNews) {
     var stringToWorkWith=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
-    console.log(stringToWorkWith["articles"]);
+    console.log(stringToWorkWith.articles);
     return stringToWorkWith;
 }
 
