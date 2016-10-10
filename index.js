@@ -142,14 +142,14 @@ function parseText(text) {
             console.log(greetings[j]);
             console.log(text);
             //console.log(text.indexOf(greetings[j]));
-            //console.log(text.indexOf(greetings[j]) == 0);
+            console.log(text.indexOf(greetings[j]) == 0);
             if (text.indexOf(greetings[j]) == 0) {
-                input = 'greetings';
+                input = 'greetings' ;
             }
             else {
                 input = 'random' ;
             }
-            console.log(input);
+            //console.log(input);
             continue;
         }
     }
