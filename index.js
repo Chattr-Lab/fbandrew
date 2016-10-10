@@ -191,7 +191,7 @@ function trumpSays() {
 }
 
 function categorySource(category) {
-    var channel ={"sport":["espn"],
+    var channel ={"sport":["espn","nfl-news","fox-sports"],
         "business":["bloomberg","business-insider","cnbc"],
         "entertainment":["buzzfeed","mashable","the-lad-bible"],
         "gaming":["ign","polygon"],
@@ -201,7 +201,7 @@ function categorySource(category) {
         "technology": ["engadget","recode","techradar"]};
 
     for (var channelcategory in channel) {
-        console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
+        console.log(channelcategory[0]);
         if(channelcategory.indexOf(channel) > -1){
             console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
         };
