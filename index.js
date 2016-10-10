@@ -196,12 +196,12 @@ function categorySource(category) {
         "entertainment":["buzzfeed","mashable","the-lad-bible"],
         "gaming":["ign","polygon"],
         "general":["associated-press","reuters","the-huffington-post"],
-        " music": ["mtv-news","mtv-news-uk"],
+        "music": ["mtv-news","mtv-news-uk"],
         "science-and-nature": ["national-geographic","new-scientist"],
         "technology": ["engadget","recode","techradar"]};
 
     for (var channelcategory in channel) {
-        console.log(channelcategory[0]);
+        console.log(channel.channelcategory);
         if(channelcategory.indexOf(channel) > -1){
             console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
         };
