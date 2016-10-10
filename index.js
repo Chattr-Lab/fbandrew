@@ -234,7 +234,7 @@ function sendGenericMessage(sender,input) {
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
     console.log(input.substring(0,input.indexOf('news')));
-    if (category = input.substring(0,input.indexOf('news'))) {
+    if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
         var processedUrl = baseUrl + '?source=espn&sortBy=top&apiKey=' + newsApiKey;
         console.log(processedUrl);
