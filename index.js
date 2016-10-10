@@ -263,12 +263,12 @@ function sendGenericMessage(sender,input) {
         }
     }*/
     request({
-        url: 'https://graph.facebook.com/v2.8/me/messages',
+        url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: "messageData",
+            message: "messageData"
         }
     }, function(error, response, body) {
         if (error) {
