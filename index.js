@@ -122,7 +122,7 @@ function sendTextMessage(sender, input) {
 function parseText(text) {
 
     //business, entertainment, gaming, general, music, science-and-nature, sport, technology.
-    var categories = ['business','entertainment','music','science','sport','tech'];
+    var categories = ['business','entertainment','music','science','sport','technology','gaming'];
     var greetings = ['hey','hi','hello','whats up?'];
     var input;
     if (text.indexOf('@') == 0) {
@@ -209,9 +209,9 @@ function categorySource(category) {
     for (var channelcategory in channel) {
 
         var temp=channel[channelcategory];
-        console.log(channelcategory);
-        console.log(category);
-        console.log(channelcategory.indexOf(category));
+        //console.log(channelcategory);
+        //console.log(category);
+        //console.log(channelcategory.indexOf(category));
         if(channelcategory.indexOf(category) > -1){
             console.log(temp[Math.floor(Math.random() * channelcategory.length)]);
         };
