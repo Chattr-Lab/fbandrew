@@ -139,8 +139,9 @@ function parseText(text) {
     }
     else if (text) {
         for (var j in greetings) {
-            console.log(j);
+            console.log(greetings[j]);
             console.log(text);
+            console.log(text.indexOf(greetings[j]));
             if (text.indexOf(greetings[j]) > -1) {
                 input = 'greetings';
             }
