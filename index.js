@@ -61,6 +61,7 @@ app.post('/webhook/', function (req, res) {
             if(text){
 
                 var input = parseText(text);
+                console.log(input.indexOf('news'));
                 if (input.indexOf('news') > -1) {
                     sendGenericMessage(sender,input);
                 }
