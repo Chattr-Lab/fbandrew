@@ -205,7 +205,7 @@ function categorySource(category) {
         "science-and-nature": ["national-geographic","new-scientist"],
         "technology": ["engadget","recode","techradar"]};
 
-    channel=JSON.parse(channel);
+   
     for (var channelcategory in channel) {
         var temp=channel[channelcategory];
         console.log(temp[0]);
