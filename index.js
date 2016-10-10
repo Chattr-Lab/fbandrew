@@ -205,13 +205,14 @@ function categorySource(category) {
         "science-and-nature": ["national-geographic","new-scientist"],
         "technology": ["engadget","recode","techradar"]};
 
-   
+
     for (var channelcategory in channel) {
+
         var temp=channel[channelcategory];
-        console.log(temp[0]);
-        /*if(channelcategory.indexOf(channel) > -1){
-            console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
-        };*/
+        //console.log(temp[0]);
+        if(channelcategory.indexOf(category) > -1){
+            console.log(temp[Math.floor(Math.random() * channelcategory.length)]);
+        };
     }
 
 }
