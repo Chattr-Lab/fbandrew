@@ -228,7 +228,7 @@ function sendGenericMessage(sender,input) {
         })
     }
 
-    messageData=getMessageData(topNews);
+    //messageData=getMessageData(topNews);
 
     //console.log(messageData);
     /*var messageData = {
@@ -268,7 +268,7 @@ function sendGenericMessage(sender,input) {
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: messageData,
+            message: "messageData",
         }
     }, function(error, response, body) {
         if (error) {
