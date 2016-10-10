@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
     //res.send(req.query['hub.challenge'])
 });
 
-app.post('/', function (req, res) {
+app.post('/webhook/', function (req, res) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: token},
