@@ -139,6 +139,7 @@ function parseText(text) {
     }
     else if (text) {
         for (var j in greetings) {
+            input = 'random' ;
             console.log(greetings[j]);
             console.log(text);
             //console.log(text.indexOf(greetings[j]));
@@ -146,12 +147,11 @@ function parseText(text) {
             if (text.indexOf(greetings[j]) == 0) {
                 input = 'greetings' ;
             }
-            else {
-                input = 'random' ;
-            }
+
             //console.log(input);
             continue;
         }
+
     }
 
 
