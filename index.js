@@ -129,8 +129,12 @@ function parseText(text) {
         for (var i in categories) {
             if (text.indexOf(categories[i]) == 1) {
                   input = categories [i]+' news';
+                  break;
             }
-            continue;
+            else {
+                input = 'random';
+            }
+
         }
     }
     else if (text) {
