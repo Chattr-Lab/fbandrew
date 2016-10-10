@@ -200,7 +200,7 @@ function getSource(category) {
 function getMessageData(topNews) {
     var stringToWorkWith=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
-    console.log(stringToWorkWith.articles);
+    console.log(stringToWorkWith);
     return stringToWorkWith;
 }
 
@@ -221,7 +221,7 @@ function sendGenericMessage(sender,input) {
             json: true
         }, function (error, response, body) {
 
-            console.log(body);
+            //console.log(body);
             if (!error && response.statusCode === 200) {
                topNews = body;
             }
