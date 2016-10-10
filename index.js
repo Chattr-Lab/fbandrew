@@ -139,10 +139,10 @@ function parseText(text) {
     }
     else if (text) {
         for (var j in greetings) {
-            console.log(greetings[j]);
-            console.log(text);
+            /console.log(greetings[j]);
+            /console.log(text);
             //console.log(text.indexOf(greetings[j]));
-            console.log(text.indexOf(greetings[j]) > -1);
+            /console.log(text.indexOf(greetings[j]) > -1);
             if (text.indexOf(greetings[j]) == 0) {
                 input = 'greetings' ;
                 break;
@@ -195,7 +195,19 @@ function trumpSays() {
 
 }
 
-function getSource(category) {
+function categorySource(category) {
+    var channel ={"sport":["espn"],
+        "business":["bloomberg","business-insider","cnbc"],
+        "entertainment":["buzzfeed","mashable","the-lad-bible"],
+        "gaming":["ign","polygon"],
+        "general":["associated-press","reuters","the-huffington-post"],
+        " music": ["mtv-news","mtv-news-uk"],
+        "science-and-nature": ["national-geographic","new-scientist"],
+        "technology": ["engadget","recode","techradar"]};
+
+    for (var channelcategory in channel) {
+        console.log(channelcategory);
+    }
     return category;
 }
 
@@ -209,13 +221,13 @@ function getMessageData(topNews) {
 function sendGenericMessage(sender,input) {
 
     //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
-    
+
     var topNews={};
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
     console.log(input.substring(0,input.indexOf('news')));
     if (category = input.substring(0,input.indexOf('news'))) {
-        var source = getSource(category);
+        var source = categorySource(category);
         var processedUrl = baseUrl + '?source=espn&sortBy=top&apiKey=' + newsApiKey;
         console.log(processedUrl);
         request({
