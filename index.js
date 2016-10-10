@@ -142,7 +142,7 @@ function parseText(text) {
             console.log(greetings[j]);
             console.log(text);
             console.log(text.indexOf(greetings[j]));
-            console.log(text.indexOf(greetings[j]) > -1);
+            console.log(text.indexOf(greetings[j]) == 0);
             if (text.indexOf(greetings[j]) > -1) {
                 input = 'greetings';
             }
