@@ -201,6 +201,7 @@ function categorySource(category) {
         "technology": ["engadget","recode","techradar"]};
 
     for (var channelcategory in channel) {
+        console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
         if(channelcategory.indexOf(channel) > -1){
             console.log(channelcategory [Math.floor(Math.random() * channelcategory.length)]);
         };
