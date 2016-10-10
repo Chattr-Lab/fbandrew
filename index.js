@@ -142,7 +142,7 @@ function parseText(text) {
             console.log(greetings[j]);
             console.log(text);
             //console.log(text.indexOf(greetings[j]));
-            console.log(text.indexOf(greetings[j]) == 0);
+            console.log(text.indexOf(greetings[j]) > -1);
             if (text.indexOf(greetings[j]) == 0) {
                 input = 'greetings' ;
                 break;
@@ -151,7 +151,7 @@ function parseText(text) {
                 input = 'random' ;
             }
             //console.log(input);
-            
+
         }
     }
 
@@ -209,7 +209,7 @@ function getMessageData(topNews) {
 function sendGenericMessage(sender,input) {
 
     //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
-    var messageData;
+    
     var topNews={};
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
@@ -233,23 +233,19 @@ function sendGenericMessage(sender,input) {
     //messageData=getMessageData(topNews);
 
     //console.log(messageData);
-    /*var messageData = {
+    var messageData = {
         "attachment": {
             "type": "template",
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    "title": "Giants-Mets is dream matchup",
+                    "subtitle": "You can't ask for more when you get two of the game's best pitchers battling in an elimination game. Time to break down the NL wild-card game (8 p.m. ET, ESPN/WatchESPN)",
+                    "image_url": "http://a.espncdn.com/combiner/i?img=%2Fphoto%2F2016%2F0805%2Fr110586_1296x729_16%2D9.jpg",
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
+                        "url": "http://www.espn.com/mlb/story/_/page/playoffs16_NLWC5Qs",
+                        "title": "Open this in browser"
                     }],
                 }, {
                     "title": "Second card",
@@ -263,14 +259,14 @@ function sendGenericMessage(sender,input) {
                 }]
             }
         }
-    }*/
+    }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: {text : "messageData"}
+            message: messageData
         }
     }, function(error, response, body) {
         if (error) {
