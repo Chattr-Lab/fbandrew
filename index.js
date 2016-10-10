@@ -268,7 +268,7 @@ function sendGenericMessage(sender,input) {
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: "messageData"
+            message: {text : "messageData"}
         }
     }, function(error, response, body) {
         if (error) {
