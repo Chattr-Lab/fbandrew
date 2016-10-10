@@ -213,31 +213,34 @@ function categorySource(category) {
         //console.log(category);
         //console.log(channelcategory.indexOf(category));
         if(channelcategory.indexOf(category) > -1){
-            console.log(temp[Math.floor(Math.random() * channelcategory.length)]);
-        };
+            return (temp[Math.floor(Math.random() * channelcategory.length)]);
+        }
+        else {return 0};
     }
 
 }
 
 function getMessageData(topNews) {
-    var stringToWorkWith=JSON.parse(topNews);
+    topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
-    console.log(stringToWorkWith);
+    for (var key in topNews) {
+        console.log(key);
+    }
+    console.log();
     return stringToWorkWith;
 }
 
 function sendGenericMessage(sender,input) {
 
     //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
-
-    var topNews={};
+    var topNews;
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
-    console.log(input.substring(0,input.indexOf('news')));
+    //console.log(input.substring(0,input.indexOf('news')));
     if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
-        var processedUrl = baseUrl + '?source=espn&sortBy=top&apiKey=' + newsApiKey;
-        console.log(processedUrl);
+        var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
+        //console.log(processedUrl);
         request({
             url: processedUrl,
             json: true
@@ -245,7 +248,7 @@ function sendGenericMessage(sender,input) {
 
             //console.log(body);
             if (!error && response.statusCode === 200) {
-               topNews = body;
+               topNews = getMessageData(body);
             }
         })
     }
