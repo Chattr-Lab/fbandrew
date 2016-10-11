@@ -257,7 +257,7 @@ function sendGenericMessage(sender,input) {
             "type": "template",
             "payload": {
                 "template_type": "generic",
-                "elements": topNews
+                "elements": "" + topNews
             }
         }
     }
