@@ -240,7 +240,7 @@ function sendGenericMessage(sender,input) {
     if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
         var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
-        //console.log(processedUrl);
+        console.log(processedUrl);
         request({
             url: processedUrl,
             json: true
@@ -248,7 +248,6 @@ function sendGenericMessage(sender,input) {
 
             //console.log(body);
             if (!error && response.statusCode === 200) {
-               console.log(body);
                 topNews = getMessageData(body);
             }
         })
