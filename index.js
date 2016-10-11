@@ -214,7 +214,7 @@ function getMessageData(topNews) {
     }
     parsedData = parsedData + ']';
     console.log(parsedData);
-    return 1;
+    return parsedData;
 }
 
 function sendGenericMessage(sender,input) {
@@ -257,6 +257,16 @@ function sendGenericMessage(sender,input) {
             "type": "template",
             "payload": {
                 "template_type": "generic",
+                "elements": topNews
+            }
+        }
+    }
+
+   /* var messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
                 "elements": [{
                     "title": "Giants-Mets is dream matchup",
                     "subtitle": "You can't ask for more when you get two of the game's best pitchers battling in an elimination game. Time to break down the NL wild-card game (8 p.m. ET, ESPN/WatchESPN)",
@@ -278,7 +288,8 @@ function sendGenericMessage(sender,input) {
                 }]
             }
         }
-    }
+    } */
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
