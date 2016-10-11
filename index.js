@@ -223,9 +223,14 @@ function categorySource(category) {
 function getMessageData(topNews) {
     //topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
-    console.log('Im in here');
+
     for (var key in topNews) {
         console.log(key);
+        if (key == 'articles') {
+            for (var article in key) {
+                console.log(article);
+            }
+        }
     }
 
     return 1;
