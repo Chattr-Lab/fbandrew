@@ -192,15 +192,26 @@ function getMessageData(topNews) {
     //stringToWorkWith = stringToWorkWith["articles"];
     console.log('Im in here');
     //console.log(topNews.status);
-
+     var parsedData = '[';
     for (var key in topNews) {
         console.log(key);
+
         if (key == 'articles') {
             for (var k in key) {
+
                 var headline=(topNews[key][k]);
-                console.log(headline['title']);
+                parsedData = "{"
+                parsedData = parsedData + '\"title\" : ' + headline['title'] + ',';
+                parsedData = parsedData + '\"subtitle\" : ' + headline['description'] + ',';
+                parsedData = parsedData + '\"image_url\" : ' + headline['urlToImage'] + ",";
+                parsedData = parsedData +  '"buttons": [{"type": "web_url","url": ' + headline['url'] + ',"title": "Open this in browser"}],';
+
+
             }
+            //console.log(parsedData);
         }
+
+        console.log(parsedData);
     }
 
     return 1;
