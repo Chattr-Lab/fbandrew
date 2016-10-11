@@ -245,12 +245,13 @@ function sendGenericMessage(sender,input) {
             if (!error && response.statusCode === 200) {
                 //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
+                console.log("Tp news1 : " + topNews);
             }
         })
     }
 
     //messageData=getMessageData(topNews);
-console.log("Tp news : " + topNews);
+//console.log("Tp news : " + topNews);
     //console.log(messageData);
     var messageData = {
         "attachment": {
