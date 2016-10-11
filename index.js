@@ -178,10 +178,8 @@ function categorySource(category) {
         //console.log(category);
         //console.log(channelcategory.indexOf(category));
         if(channelcategory.indexOf(category) > -1){
-            //return (temp[Math.floor(Math.random() * channelcategory.length)]);
-            return (temp[0]);
+            return (temp[Math.floor(Math.random() * channelcategory.length)]);
         }
-        else {return 0};
     }
 
 }
@@ -246,17 +244,8 @@ function sendGenericMessage(sender,input) {
                 //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
                 console.log("Tp news1 : " + topNews);
-                console.log("Tp news2 : " + topNews);
                 //console.log(messageData);
-                var messageData = {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "generic",
-                            "elements": "" + topNews
-                        }
-                    }
-                }
+                var messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements": ""' + topNews + '}}}';
 
                 request({
                     url: 'https://graph.facebook.com/v2.6/me/messages',
