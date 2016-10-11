@@ -291,7 +291,7 @@ function sendGenericMessage(sender,input) {
     } */
 
    //console.log("asdf : "+messageData.attachment.payload.elements);
-    console.log("asdf : "+JSON.Parse(messageData));
+    console.log("asdf : "+JSON.parse(messageData));
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
