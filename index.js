@@ -224,8 +224,8 @@ function getMessageData(topNews) {
     //topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
     console.log('Im in here');
-    console.log(topNews.length);
-    
+    console.log(topNews.status);
+
     for (var key in topNews) {
         console.log(key);
         if (key == 'articles') {
