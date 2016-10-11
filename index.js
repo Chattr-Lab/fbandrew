@@ -248,7 +248,8 @@ function sendGenericMessage(sender,input) {
 
             //console.log(body);
             if (!error && response.statusCode === 200) {
-               topNews = getMessageData(body);
+               console.log(body);
+                topNews = getMessageData(body);
             }
         })
     }
