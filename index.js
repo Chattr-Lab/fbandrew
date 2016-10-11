@@ -250,7 +250,7 @@ function sendGenericMessage(sender,input) {
     }
 
     //messageData=getMessageData(topNews);
-
+console.log('Tp news : " + topNews);
     //console.log(messageData);
     var messageData = {
         "attachment": {
