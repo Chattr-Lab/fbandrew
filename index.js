@@ -221,8 +221,8 @@ function categorySource(category) {
 }
 
 function getMessageData(topNews) {
-    console.log('B4 json parse' + topNews);
-    topNews=JSON.parse(topNews);
+    //console.log('B4 json parse' + topNews);
+    //topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
     console.log('Im in here');
     //console.log(topNews.status);
@@ -230,8 +230,8 @@ function getMessageData(topNews) {
     for (var key in topNews) {
         console.log(key);
         if (key == 'articles') {
-            for (var article in key) {
-                console.log(key [article]);
+            for (var k in key) {
+                console.log(topNews[key][k]);
             }
         }
     }
@@ -265,7 +265,7 @@ function sendGenericMessage(sender,input) {
 
             //console.log(body);
             if (!error && response.statusCode === 200) {
-                console.log(body);
+                //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
             }
         })
