@@ -289,7 +289,9 @@ function sendGenericMessage(sender,input) {
             }
         }
     } */
-console.log("asdf : "+messageData);
+
+   console.log("asdf : "+messageData.attachment);
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
