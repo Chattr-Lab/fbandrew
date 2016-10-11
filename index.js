@@ -243,10 +243,10 @@ function sendGenericMessage(sender,input) {
             if (!error && response.statusCode === 200) {
                 //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
-                console.log("Tp news1 : " + topNews);
+                //console.log("Tp news1 : " + topNews);
                 //console.log(messageData);
                 var messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements": ""' + topNews + '}}}';
-
+                console.log(messageData);
                 request({
                     url: 'https://graph.facebook.com/v2.6/me/messages',
                     qs: {access_token:token},
