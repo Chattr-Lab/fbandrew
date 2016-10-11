@@ -220,7 +220,7 @@ function getMessageData(topNews) {
 function sendGenericMessage(sender,input) {
 
     //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
-    var topNews;
+    var topNews = '';
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
     console.log(input.substring(0,input.indexOf('news')-1));
