@@ -246,22 +246,38 @@ function sendGenericMessage(sender,input) {
                 //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
                 console.log("Tp news1 : " + topNews);
+                console.log("Tp news2 : " + topNews);
+                //console.log(messageData);
+                var messageData = {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": "" + topNews
+                        }
+                    }
+                }
+
+                request({
+                    url: 'https://graph.facebook.com/v2.6/me/messages',
+                    qs: {access_token:token},
+                    method: 'POST',
+                    json: {
+                        recipient: {id:sender},
+                        message: messageData
+                    }
+                }, function(error, response, body) {
+                    if (error) {
+                        console.log('Error sending messages: ', error)
+                    } else if (response.body.error) {
+                        console.log('Error: ', response.body.error)
+                    }
+                })
             }
         })
     }
 
     //messageData=getMessageData(topNews);
-console.log("Tp news2 : " + topNews);
-    //console.log(messageData);
-    var messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": "" + topNews
-            }
-        }
-    }
 
    /* var messageData = {
         "attachment": {
@@ -294,21 +310,7 @@ console.log("Tp news2 : " + topNews);
    //console.log("asdf : "+messageData.attachment.payload.elements);
     //console.log("asdf : "+JSON.parse(messageData));
 
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
+
 }
 
 
