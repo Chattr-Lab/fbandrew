@@ -213,7 +213,7 @@ function getMessageData(topNews) {
         }
     }
     parsedData = parsedData + ']';
-    console.log(parsedData);
+    //console.log(parsedData);
     return parsedData;
 }
 
@@ -289,7 +289,7 @@ function sendGenericMessage(sender,input) {
             }
         }
     } */
-console.log(messageData);
+console.log("asdf : "+messageData);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
