@@ -221,11 +221,11 @@ function categorySource(category) {
 }
 
 function getMessageData(topNews) {
-    console.log('B4 json parse');
+    console.log('B4 json parse' + topNews);
     topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
     console.log('Im in here');
-    console.log(topNews.status);
+    //console.log(topNews.status);
 
     for (var key in topNews) {
         console.log(key);
