@@ -247,7 +247,15 @@ function sendGenericMessage(sender,input) {
     console.log(input.substring(0,input.indexOf('news')-1));
     if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
-        var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
+        if (source != 'undefined') {
+            var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
+            console.log(processedUrl);
+        }
+        else {
+            source = categorySource(category);
+            var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
+            console.log(processedUrl);
+        }
         console.log(processedUrl);
         request({
             url: processedUrl,
