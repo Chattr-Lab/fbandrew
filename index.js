@@ -251,7 +251,7 @@ function sendGenericMessage(sender,input) {
     }
 
     //messageData=getMessageData(topNews);
-//console.log("Tp news : " + topNews);
+console.log("Tp news2 : " + topNews);
     //console.log(messageData);
     var messageData = {
         "attachment": {
@@ -292,7 +292,7 @@ function sendGenericMessage(sender,input) {
     } */
 
    //console.log("asdf : "+messageData.attachment.payload.elements);
-    console.log("asdf : "+JSON.parse(messageData));
+    //console.log("asdf : "+JSON.parse(messageData));
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
