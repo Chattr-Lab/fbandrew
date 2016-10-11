@@ -221,6 +221,7 @@ function categorySource(category) {
 }
 
 function getMessageData(topNews) {
+    console.log('B4 json parse');
     topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
     console.log('Im in here');
