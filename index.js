@@ -228,7 +228,7 @@ function getMessageData(topNews) {
         console.log(key);
         if (key == 'articles') {
             for (var article in key) {
-                console.log(article);
+                console.log(key [article]);
             }
         }
     }
