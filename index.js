@@ -197,16 +197,18 @@ function getMessageData(topNews) {
         console.log(key);
 
         if (key == 'articles') {
-            for (var k in key) {
 
+            for (var k in key) {
+                if (parsedData.length != 1) {
+                    parsedData = parsedData + ",";
+                }
                 var headline=(topNews[key][k]);
                 parsedData = "{";
                 parsedData = parsedData + '\"title\" : "' + headline['title'] + '",';
                 parsedData = parsedData + '\"subtitle\" : "' + headline['description'] + '",';
                 parsedData = parsedData + '\"image_url\" : "' + headline['urlToImage'] + '",';
                 parsedData = parsedData +  '"buttons": [{"type": "web_url","url": "' + headline['url'] + '","title": "Open this in browser"}]';
-                parsedData = parsedData +  '}';
-
+                parsedData = parsedData +  '},';
 
             }
             //console.log(parsedData);
