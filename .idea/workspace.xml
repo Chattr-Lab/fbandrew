@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33497877-3482-403c-9a7f-a08b7511ee5d" name="Default" comment="" />
+    <list default="true" id="33497877-3482-403c-9a7f-a08b7511ee5d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+    </list>
     <ignored path="andrew.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,21 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="222" column="31" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="31" />
+            <state relative-caret-position="184">
+              <caret line="226" column="4" selection-start-line="226" selection-start-column="4" selection-end-line="226" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test.txt">
+      <file leaf-file-name="txt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/txt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="672" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="672" />
+            <state relative-caret-position="187">
+              <caret line="11" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -66,8 +68,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/test.txt" />
+        <option value="$PROJECT_DIR$/txt.js" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -590,12 +593,12 @@
       <option name="presentableId" value="Default" />
       <updated>1475692801009</updated>
       <workItem from="1475692810761" duration="932000" />
-      <workItem from="1475694049991" duration="48222000" />
+      <workItem from="1475694049991" duration="50011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49154000" />
+    <option name="totallyTimeSpent" value="50943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -660,18 +663,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="222" column="31" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="672" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="672" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="226" column="4" selection-start-line="226" selection-start-column="4" selection-end-line="226" selection-end-column="4" />
           <folding />
         </state>
       </provider>
