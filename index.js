@@ -221,13 +221,14 @@ function categorySource(category) {
 }
 
 function getMessageData(topNews) {
-    topNews=JSON.parse(topNews);
+    //topNews=JSON.parse(topNews);
     //stringToWorkWith = stringToWorkWith["articles"];
+    console.log('Im in here');
     for (var key in topNews) {
         console.log(key);
     }
-    console.log();
-    return stringToWorkWith;
+
+    return 1;
 }
 
 function sendGenericMessage(sender,input) {
