@@ -213,7 +213,8 @@ function categorySource(category) {
         //console.log(category);
         //console.log(channelcategory.indexOf(category));
         if(channelcategory.indexOf(category) > -1){
-            return (temp[Math.floor(Math.random() * channelcategory.length)]);
+            //return (temp[Math.floor(Math.random() * channelcategory.length)]);
+            return (temp[0]);
         }
         else {return 0};
     }
@@ -257,7 +258,7 @@ function sendGenericMessage(sender,input) {
             var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
             console.log(processedUrl);
         }
-        console.log(processedUrl);
+
         request({
             url: processedUrl,
             json: true
