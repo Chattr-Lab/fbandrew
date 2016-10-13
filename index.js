@@ -153,6 +153,7 @@ function parseText(text) {
             }
             else if (text.indexOf('help') > -1) {
                 input = 'help'
+                break;
             }
             else {
                 input = 'random' ;
