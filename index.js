@@ -90,13 +90,17 @@ function sendTextMessage(sender, input) {
 
     var messageData;
     var greeting =["Hey!","Hello!","Hi there!"];
-    var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"]
+    var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"];
+    var helpMenu = 'For news by category type one of these handle @business,@entertainment,@music,@science,@sport,@technology,@gaming,@general';
     //console.log(input);
     if (input == 'greetings') {
         messageData = {text: greeting[Math.floor(Math.random() * greeting.length)]};
     }
     else if (input == 'random') {
         messageData = {text: random[Math.floor(Math.random() * random.length)]};
+    }
+    else if (input == 'help') {
+        messageData = {text: helpMenu};
     }
 
     request({
@@ -143,9 +147,12 @@ function parseText(text) {
             //console.log(text);
             //console.log(text.indexOf(greetings[j]));
             //console.log(text.indexOf(greetings[j]) > -1);
-            if (text.indexOf(greetings[j]) == 0) {
+            if (text.indexOf(greetings[j]) > -1) {
                 input = 'greetings' ;
                 break;
+            }
+            else if (text.indexOf('help') > -1) {
+                input = 'help'
             }
             else {
                 input = 'random' ;
@@ -261,7 +268,7 @@ function sendGenericMessage(sender,input) {
                         recipient: {id:sender},
                         message: messageData
                     }
-                }, function(error, response, body) {
+                }, function(error, response) {
                     if (error) {
                         console.log('Error sending messages: ', error)
                     } else if (response.body.error) {
