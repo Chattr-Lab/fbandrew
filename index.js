@@ -202,6 +202,8 @@ function getMessageData(topNews) {
                     parsedData = parsedData + ",";
                 }
                 var headline=(topNews[key][k]);
+                console.log("205 : " + headline);
+                console.log('206: ' + headline['title']);
                 parsedData = parsedData + "{";
                 parsedData = parsedData + '"title" : "' + headline['title'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
                 parsedData = parsedData + '"subtitle" : "' + headline['description'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
