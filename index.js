@@ -262,8 +262,7 @@ function sendGenericMessage(sender,input) {
     console.log(input.substring(0,input.indexOf('news')-1));
     if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
-        IMDB.getReq({ name: input.substring(5,input.length) }, function(err, things) {
-            movie = things;});
+        IMDB.getReq({ name: input.substring(5,input.length) }, function(err, things) { movie = things;console.log(movie.title)});
         console.log(movie.title);
         console.log(movie.poster);
         messageData = {
@@ -299,6 +298,7 @@ function sendGenericMessage(sender,input) {
                 console.log('Error: ', response.body.error)
             }
         })
+
     }
     else if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
