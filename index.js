@@ -253,7 +253,6 @@ function getMessageData(topNews) {
 
 function sendGenericMessage(sender,input) {
 
-    //https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=e4c2fce3425949ac8a1c92d4ecbea56e
     var topNews = '';
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
@@ -265,27 +264,9 @@ function sendGenericMessage(sender,input) {
         IMDB.getReq({ name: input.substring(5,input.length) },
             function(err, things) {
                 movie = things;
-                // console.log(movie.title);
-                // console.log(movie.year);
-                // console.log(movie.imdburl);
-                messageData = {
-                    "attachment": {
-                        "type": "template",
-                        "payload": {
-                            "template_type": "generic",
-                            "elements": {
-                                "title": movie.title,
-                                "subtitle": movie.year,
-                                "image_url": movie.poster,
-                                "buttons": [{
-                                    "type": "web_url",
-                                    "url": movie.imdburl,
-                                    "title": "IMDB Link"
-                                }]
-                            }
-                        }
-                    }
-                }
+            ;
+                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements":  [{"title": "' + console.log(movie.title) + '","subtitle" : "' +  console.log(movie.year) + '","image_url" : "' + console.log(movie.poster) + '","buttons": [{"type": "web_url","url": "' + console.log(movie.poster) + '","title": "Open this in browser"}]';
+
                 console.log(messageData);
                 request({
                     url: 'https://graph.facebook.com/v2.6/me/messages',
