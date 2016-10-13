@@ -193,8 +193,8 @@ function categorySource(category) {
         //console.log(category);
         //console.log(channelcategory.indexOf(category));
         if(channelcategory.indexOf(category) > -1){
-            //return (temp[Math.floor(Math.random() * channelcategory.length)]);
-            return (temp[0]);
+            return (temp[Math.floor(Math.random() * temp.length)]);
+            //return (temp[0]);
         }
     }
 
