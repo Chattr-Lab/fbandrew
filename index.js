@@ -265,7 +265,7 @@ function sendGenericMessage(sender,input) {
         IMDB.getReq({ name: input.substring(5,input.length) },
             function(err, things) {
 
-                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements":  [{"title": "' + things.title + '","subtitle" : "' +  things.year + '","image_url" : "' + things.poster + '","buttons": [{"type": "web_url","url": "' + things.imdburl + '","title": "Open this in browser"}]';
+                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements":  [{"title": "' + things.title + '","subtitle" : "' +  things.year + '","image_url" : "' + things.poster + '","buttons": [{"type": "web_url","url": "' + things.imdburl + '","title": "Open this in browser"}]}';
 
                 console.log(messageData);
                 request({
