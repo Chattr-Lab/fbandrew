@@ -94,7 +94,7 @@ function sendTextMessage(sender, input) {
     var messageData;
     var greeting =["Hey!","Hello!","Hi there!"];
     var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"];
-    var helpMenu = 'For news by category type one of these handle @business,@entertainment,@music,@science,@sport,@technology,@gaming,@general';
+    var helpMenu = 'For news by category reply with one of these handles: @business, @entertainment, @music, @science, @sport, @technology, @gaming, @general';
     //console.log(input);
     if (input == 'greetings') {
         messageData = {text: greeting[Math.floor(Math.random() * greeting.length)]};
