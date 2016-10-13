@@ -215,14 +215,15 @@ function getMessageData(topNews) {
             console.log(key.length);
             for (var k in topNews[key]) {
                 console.log('k value : ' + k);
-                if (parsedData.length != 1) {
-                    parsedData = parsedData + ",";
-                }
-                var headline=(topNews[key][k]);
-                console.log("205 : " + headline);
 
-                if (headline['description'] != null) {
+                var headline=(topNews[key][k]);
+                //console.log("205 : " + headline);
+
+                if (headline['title'] && headline['description'] && headline['urlToImage'] && headline['url']) {
                     console.log('206: ' + headline['title']);
+                    if (parsedData.length != 1) {
+                        parsedData = parsedData + ",";
+                    }
                     parsedData = parsedData + "{";
                     parsedData = parsedData + '"title" : "' + headline['title'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
                     parsedData = parsedData + '"subtitle" : "' + headline['description'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
