@@ -135,6 +135,10 @@ function parseText(text) {
                   input = categories [i]+' news';
                   break;
             }
+            else if (text.indexOf('help') > 0) {
+                input = 'help';
+                break;
+            }
             else {
                 input = 'random';
             }
@@ -152,7 +156,7 @@ function parseText(text) {
                 break;
             }
             else if (text.indexOf('help') > -1) {
-                input = 'help'
+                input = 'help';
                 break;
             }
             else {
