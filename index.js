@@ -265,9 +265,9 @@ function sendGenericMessage(sender,input) {
         IMDB.getReq({ name: input.substring(5,input.length) },
             function(err, things) {
                 movie = things;
-                console.log(movie.title);
-                console.log(movie.year);
-                console.log(movie.imdburl);
+                // console.log(movie.title);
+                // console.log(movie.year);
+                // console.log(movie.imdburl);
                 messageData = {
                     "attachment": {
                         "type": "template",
@@ -286,6 +286,7 @@ function sendGenericMessage(sender,input) {
                         }
                     }
                 }
+                console.log(messageData);
                 request({
                     url: 'https://graph.facebook.com/v2.6/me/messages',
                     qs: {access_token:token},
