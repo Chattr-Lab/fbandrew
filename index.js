@@ -69,7 +69,7 @@ app.post('/webhook/', function (req, res) {
                     sendTextMessage(sender,input);
                 }
                 else if(input == 'trump') {
-                    trumpSays();
+                    sendTextMessage(sender,trumpSays());
                 }
             }
             //sendTextMessage(sender, "Echo: " + text.substring(0, 200));
@@ -86,43 +86,6 @@ app.listen(process.env.PORT || 1337, function () {
 
 });
 
-function sendTextMessage(sender, input) {
-
-    var messageData;
-    var greeting =["Hey!","Hello!","Hi there!"];
-    var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"];
-    var helpMenu = 'For news by category reply with one of these handles: @business, @entertainment, @music, @science, @sport, @technology, @gaming, @general';
-    //console.log(input);
-    if (input == 'greetings') {
-        messageData = {text: greeting[Math.floor(Math.random() * greeting.length)]};
-    }
-    else if (input == 'random') {
-        messageData = {text: random[Math.floor(Math.random() * random.length)]};
-    }
-    else if (input == 'help') {
-        messageData = {text: helpMenu};
-    }
-
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: token},
-        method: 'POST',
-        json: {
-            recipient: {id: sender},
-            message: messageData
-        }
-    }, function (error, response) {
-
-        if (error) {
-            console.log('Error sending message: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-
-    });
-
-}
-
 function parseText(text) {
 
     //business, entertainment, gaming, general, music, science-and-nature, sport, technology.
@@ -132,8 +95,8 @@ function parseText(text) {
     if (text.indexOf('@') == 0) {
         for (var i in categories) {
             if (text.indexOf(categories[i]) == 1) {
-                  input = categories [i]+' news';
-                  break;
+                input = categories [i]+' news';
+                break;
             }
             else if (text.indexOf('help') > 0) {
                 input = 'help';
@@ -175,6 +138,42 @@ function parseText(text) {
     return input;
 };
 
+function sendTextMessage(sender, input) {
+
+    var messageData;
+    var greeting =["Hey!","Hello!","Hi there!"];
+    var random = ["I didn't quite get it","I'm too smart to reply to that, try something else","try '@sport news' to get latest sport news"];
+    var helpMenu = 'For news by category reply with one of these handles: @business, @entertainment, @music, @science, @sport, @technology, @gaming, @general';
+    //console.log(input);
+    if (input == 'greetings') {
+        messageData = {text: greeting[Math.floor(Math.random() * greeting.length)]};
+    }
+    else if (input == 'random') {
+        messageData = {text: random[Math.floor(Math.random() * random.length)]};
+    }
+    else if (input == 'help') {
+        messageData = {text: helpMenu};
+    }
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: token},
+        method: 'POST',
+        json: {
+            recipient: {id: sender},
+            message: messageData
+        }
+    }, function (error, response) {
+
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+
+    });
+
+}
 
 function categorySource(category) {
     var channel ={"sport":["espn","nfl-news","fox-sports"],
