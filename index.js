@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
 var url = require('url');
+var IMDB = require('imdb-api');
 
 var verify_token = process.env.FB_VERIFY_TOKEN;
 var token = process.env.FB_PAT;
@@ -65,6 +66,9 @@ app.post('/webhook/', function (req, res) {
                 if (input.indexOf('news') > -1) {
                     sendGenericMessage(sender,input);
                 }
+                else if (input.indexOf('imdb') > -1) {
+                    sendGenericMessage(sender,input);
+                }
                 else if (input == 'greetings' || input == 'help' || input == 'random') {
                     sendTextMessage(sender,input);
                 }
@@ -97,6 +101,9 @@ function parseText(text) {
             if (text.indexOf(categories[i]) == 1) {
                 input = categories [i]+' news';
                 break;
+            }
+            else if (text.indexOf('imdb') > 0) {
+                input = 'imdb' + text.substring(6,text.length);
             }
             else if (text.indexOf('help') > 0) {
                 input = 'help';
@@ -248,18 +255,37 @@ function sendGenericMessage(sender,input) {
     var topNews = '';
     var baseUrl = "https://newsapi.org/v1/articles";
     var category;
+    var messageData = '';
+    var movie='';
     console.log(input.substring(0,input.indexOf('news')-1));
-    if (category = input.substring(0,input.indexOf('news')-1)) {
+    if (input == 'imdb') {
+
+        IMDB.getReq({ name: text.substring(text.indexOf("imdb")+5,text.length) }, function(err, things) {
+            movie = things;});
+        messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": {
+                        "title": movie.title,
+                        "subtitle": movie.year,
+                        "image_url": movie.poster,
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": movie.imdburl,
+                            "title": "IMDB Link"
+                        }]
+                    }
+                }
+            }
+        }
+    }
+    else if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
-        if (source != 'undefined') {
-            var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
-            console.log(processedUrl);
-        }
-        else {
-            source = categorySource(category);
-            var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
-            console.log(processedUrl);
-        }
+
+        var processedUrl = baseUrl + '?source=' + source + '&sortBy=top&apiKey=' + newsApiKey;
+        console.log(processedUrl);
 
         request({
             url: processedUrl,
@@ -272,7 +298,7 @@ function sendGenericMessage(sender,input) {
                 topNews = getMessageData(body);
                 //console.log("Tp news1 : " + topNews);
                 //console.log(messageData);
-                var messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements": ' + topNews + '}}}';
+                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements": ' + topNews + '}}}';
                 //messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements": [{"title" : "Samsung is telling everyone to power down their Galaxy Note 7s","subtitle" : "It’s not a second recall (yet), but it may as well be.","image_url" : "https://cdn0.vox-cdn.com/thumbor/n_FJTC-1juI5OYvOzhpy8IQXez4=/0x351:3245x2176/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51298549/605913484.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13238442/samsung-turn-off-note-7","title": "Open this in browser"}]},{"title" : "Facebook’s Slack competitor, Workplace, is finally here","subtitle" : "The service formerly know as Facebook at Work has arrived.","image_url" : "https://cdn0.vox-cdn.com/thumbor/8bEBNT5r16rVF7gG97-HO-17Qd8=/0x228:3000x1916/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51286277/118313153.1476112900.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13226802/workplace-facebook-at-work-slack-competitor-launch","title": "Open this in browser"}]},{"title" : "Greylock has raised another $1 billion investment fund","subtitle" : "Greylock will focus on what it knows best: Software.","image_url" : "https://cdn0.vox-cdn.com/thumbor/FhoSQLuCuiGbIkHZPyXPlfYwtx8=/0x154:3000x1842/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51297087/604259104.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/11/13235234/greylock-partners-new-fund","title": "Open this in browser"}]},{"title" : "Full transcript: Political consultant Bradley Tusk on Recode Decode","subtitle" : "Uber actually does a much better job working with government than people realize.","image_url" : "https://cdn0.vox-cdn.com/thumbor/mjkZyZtUuVeaKdhWz2E9OlozNOc=/0x100:1920x1180/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51299797/TuskVentures_Bradley_Tusk_5B1_5D.0.jpeg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13231894/bradley-tusk-ventures-uber-politics-recode-decode-podcast-transcript","title": "Open this in browser"}]},{"title" : "The second presidential debate drew a huge TV audience, but not a record-breaking one","subtitle" : "66.5 million viewers.","image_url" : "https://cdn0.vox-cdn.com/thumbor/mk9EGlCh3HpT9HLtfXyjXhHv2xw=/0x0:4465x2512/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51295003/613703308.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13235830/trump-clinton-debate-ratings","title": "Open this in browser"}]},{"title" : "Samsung can’t salvage the Galaxy Note 7. Now it has to save the company’s reputation.","subtitle" : "It’s about much more than the fate of just this phone.","image_url" : "https://cdn0.vox-cdn.com/thumbor/ms2MJngAOruLjmIM4u51PnmYgcQ=/0x235:4500x2766/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51294725/598661650.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13229242/samsung-future-galaxy-note-7-recall-phone","title": "Open this in browser"}]},{"title" : "Twitter is advertising around New York City, including right near Wall Street","subtitle" : "!?","image_url" : "https://cdn0.vox-cdn.com/thumbor/SL4cpOPu2iqX1kjgwifHrJA33g4=/0x153:1632x1071/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51293697/Twitter_20NYC_20ads.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13234198/twitter-new-york-ads-subway-wall-street","title": "Open this in browser"}]},{"title" : "Facebook is going to have a hard time getting people to shop through its app","subtitle" : "Why a company’s customers don’t pick up on new features the way they’re supposed to.","image_url" : "https://cdn0.vox-cdn.com/thumbor/RJRSaIUOJyJyK0_xKBvdXRvM-0A=/0x0:4200x2363/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/51290673/GettyImages-542161424.0.jpg","buttons": [{"type": "web_url","url": "http://www.recode.net/2016/10/10/13189980/technology-consumer-behavior-behavioral-debt-theory-facebook","title": "Open this in browser"}]}]}}}';
                 console.log(messageData);
                 request({
@@ -293,6 +319,7 @@ function sendGenericMessage(sender,input) {
             }
         })
     }
+
 
     //messageData=getMessageData(topNews);
 
@@ -363,6 +390,6 @@ function trumpSays() {
         'The only card [Hillary Clinton] has is the woman\'s card. She\'s got nothing else to offer and frankly, if Hillary Clinton were a man, I don\'t think she\'d get 5 percent of the vote. The only thing she\'s got going is the woman\'s card, and the beautiful thing is, women don\'t like her.'];
 
     var randomDonaldTrumpQuote = DTquotes[Math.floor(Math.random() * DTquotes.length)];
-    return randomDonaldTrumpQuote;
+    return 'Trump says: ' + randomDonaldTrumpQuote;
 
 }
