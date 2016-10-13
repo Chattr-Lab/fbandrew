@@ -280,6 +280,21 @@ function sendGenericMessage(sender,input) {
                 }
             }
         }
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: {access_token:token},
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: messageData
+            }
+        }, function(error, response) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
     }
     else if (category = input.substring(0,input.indexOf('news')-1)) {
         var source = categorySource(category);
