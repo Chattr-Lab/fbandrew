@@ -203,10 +203,10 @@ function getMessageData(topNews) {
                 }
                 var headline=(topNews[key][k]);
                 parsedData = parsedData + "{";
-                parsedData = parsedData + '\"title\" : "' + headline['title'].replace(/['"]+/g, '') + '",';
-                parsedData = parsedData + '\"subtitle\" : "' + headline['description'].replace(/['"]+/g, '') + '",';
-                parsedData = parsedData + '\"image_url\" : "' + headline['urlToImage'].replace(/['"]+/g, '') + '",';
-                parsedData = parsedData +  '"buttons": [{"type": "web_url","url": "' + headline['url'].replace(/['"]+/g, '') + '","title": "Open this in browser"}]';
+                parsedData = parsedData + '"title" : "' + headline['title'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                parsedData = parsedData + '"subtitle" : "' + headline['description'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                parsedData = parsedData + '"image_url" : "' + headline['urlToImage'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                parsedData = parsedData +  '"buttons": [{"type": "web_url","url": "' + headline['url'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '","title": "Open this in browser"}]';
                 parsedData = parsedData +  '}';
             }
         }
