@@ -221,12 +221,14 @@ function getMessageData(topNews) {
                 var headline=(topNews[key][k]);
                 console.log("205 : " + headline);
                 console.log('206: ' + headline['title']);
-                parsedData = parsedData + "{";
-                parsedData = parsedData + '"title" : "' + headline['title'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
-                parsedData = parsedData + '"subtitle" : "' + headline['description'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
-                parsedData = parsedData + '"image_url" : "' + headline['urlToImage'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
-                parsedData = parsedData +  '"buttons": [{"type": "web_url","url": "' + headline['url'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '","title": "Open this in browser"}]';
-                parsedData = parsedData +  '}';
+                if (headline['description'] != null) {
+                    parsedData = parsedData + "{";
+                    parsedData = parsedData + '"title" : "' + headline['title'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                    parsedData = parsedData + '"subtitle" : "' + headline['description'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                    parsedData = parsedData + '"image_url" : "' + headline['urlToImage'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '",';
+                    parsedData = parsedData + '"buttons": [{"type": "web_url","url": "' + headline['url'].replace(/[']+/g, "/'").replace(/["]+/g, '/"') + '","title": "Open this in browser"}]';
+                    parsedData = parsedData + '}';
+                }
             }
         }
     }
