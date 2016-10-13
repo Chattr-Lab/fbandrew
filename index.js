@@ -262,42 +262,46 @@ function sendGenericMessage(sender,input) {
     console.log(input.substring(0,input.indexOf('news')-1));
     if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
-        IMDB.getReq({ name: input.substring(5,input.length) }, function(err, things) { movie = things;console.log(movie.title)});
-        console.log(movie.title);
-        console.log(movie.poster);
-        messageData = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": {
-                        "title": movie.title,
-                        "subtitle": movie.year,
-                        "image_url": movie.poster,
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": movie.imdburl,
-                            "title": "IMDB Link"
-                        }]
+        IMDB.getReq({ name: input.substring(5,input.length) },
+            function(err, things)
+            { movie = things;
+                console.log(movie.title);
+                console.log(movie.poster);
+                messageData = {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "elements": {
+                                "title": movie.title,
+                                "subtitle": movie.year,
+                                "image_url": movie.poster,
+                                "buttons": [{
+                                    "type": "web_url",
+                                    "url": movie.imdburl,
+                                    "title": "IMDB Link"
+                                }]
+                            }
+                        }
                     }
                 }
-            }
-        }
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: {access_token:token},
-            method: 'POST',
-            json: {
-                recipient: {id:sender},
-                message: messageData
-            }
-        }, function(error, response) {
-            if (error) {
-                console.log('Error sending messages: ', error)
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error)
-            }
-        })
+                request({
+                    url: 'https://graph.facebook.com/v2.6/me/messages',
+                    qs: {access_token:token},
+                    method: 'POST',
+                    json: {
+                        recipient: {id:sender},
+                        message: messageData
+                    }
+                }, function(error, response) {
+                    if (error) {
+                        console.log('Error sending messages: ', error)
+                    } else if (response.body.error) {
+                        console.log('Error: ', response.body.error)
+                    }
+                })
+            });
+
 
     }
     else if (category = input.substring(0,input.indexOf('news')-1)) {
