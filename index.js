@@ -65,14 +65,11 @@ app.post('/webhook/', function (req, res) {
                 if (input.indexOf('news') > -1) {
                     sendGenericMessage(sender,input);
                 }
-                else if ( input == 'greetings') {
+                else if (input == 'greetings' || input == 'help' || input == 'random') {
                     sendTextMessage(sender,input);
                 }
-                else if (input == 'help') {
-                    sendTextMessage(sender,input);
-                }
-                else if (input == 'random') {
-                    sendTextMessage(sender,input);
+                else if(input == 'trump') {
+                    trumpSays();
                 }
             }
             //sendTextMessage(sender, "Echo: " + text.substring(0, 200));
@@ -140,6 +137,10 @@ function parseText(text) {
             }
             else if (text.indexOf('help') > 0) {
                 input = 'help';
+                break;
+            }
+            else if (text.indexOf('trump') > 0) {
+                input = 'trump';
                 break;
             }
             else {
