@@ -69,7 +69,6 @@ app.post('/webhook/', function (req, res) {
                     sendTextMessage(sender,input);
                 }
                 else if(input == 'trump') {
-                    input = trumpSays()
                     sendTextMessage(sender,input);
                 }
             }
@@ -154,6 +153,9 @@ function sendTextMessage(sender, input) {
     }
     else if (input == 'help') {
         messageData = {text: helpMenu};
+    }
+    else if (input == 'trump') {
+        messageData = {text: trumpSays()};
     }
 
     request({
