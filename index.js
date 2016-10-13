@@ -103,7 +103,8 @@ function parseText(text) {
                 break;
             }
             else if (text.indexOf('imdb') > 0) {
-                input = 'imdb' + text.substring(6,text.length);
+                input = 'imdb ' + text.substring(6,text.length);
+                console.log('parseText:' + input);
             }
             else if (text.indexOf('help') > 0) {
                 input = 'help';
@@ -258,7 +259,7 @@ function sendGenericMessage(sender,input) {
     var messageData = '';
     var movie='';
     console.log(input.substring(0,input.indexOf('news')-1));
-    if (input == 'imdb') {
+    if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
         IMDB.getReq({ name: text.substring(text.indexOf("imdb")+5,text.length) }, function(err, things) {
             movie = things;});
