@@ -197,6 +197,7 @@ function getMessageData(topNews) {
 
         if (key == 'articles') {
 
+            console.log(key.length);
             for (var k in key) {
                 if (parsedData.length != 1) {
                     parsedData = parsedData + ",";
