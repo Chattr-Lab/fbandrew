@@ -261,11 +261,11 @@ function sendGenericMessage(sender,input) {
     //console.log(input.substring(0,input.indexOf('news')-1));
     if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
-        input.substring(5,input.length);
+
         IMDB.getReq({ name: input.substring(5,input.length) },
             function(err, things) {
-                movie = things;
-                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements":  [{"title": "' + console.log(movie.title) + '","subtitle" : "' +  console.log(movie.year) + '","image_url" : "' + console.log(movie.poster) + '","buttons": [{"type": "web_url","url": "' + console.log(movie.poster) + '","title": "Open this in browser"}]';
+
+                messageData = '{"attachment": {"type": "template","payload": {"template_type": "generic","elements":  [{"title": "' + things.title + '","subtitle" : "' +  things.year + '","image_url" : "' + things.poster + '","buttons": [{"type": "web_url","url": "' + things.imdburl + '","title": "Open this in browser"}]';
 
                 console.log(messageData);
                 request({
