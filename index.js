@@ -263,10 +263,11 @@ function sendGenericMessage(sender,input) {
     if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
         IMDB.getReq({ name: input.substring(5,input.length) },
-            function(err, things)
-            { movie = things;
+            function(err, things) {
+                movie = things;
                 console.log(movie.title);
-                console.log(movie.poster);
+                console.log(movie.year);
+                console.log(movie.imdburl);
                 messageData = {
                     "attachment": {
                         "type": "template",
