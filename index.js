@@ -25,7 +25,7 @@ app.get('/webhook/', function (req, res) {
 app.get('/', function (req, res) {
 
     res.send('Hello World! This is the bot\'s root endpoint!');
-    //res.send(req.query['hub.challenge'])
+
 });
 
 
@@ -42,23 +42,7 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
             text = text.toLowerCase();
-            /*if (text === 'generic') {
-                sendGenericMessage(sender)
-                continue
-            }
-            if (text.indexOf("@trump") > -1) { //if input text starts with "@trump"
-
-                var reply= trumpSays()
-                sendTextMessage(sender, "Trump says: " + reply);
-            }
-            else {
-                sendTextMessage(sender, "Echo: " + text.substring(0, 200));
-            }
-            if (event.postback) {
-                text = JSON.stringify(event.postback)
-                sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-                continue
-            }*/
+            
             if(text){
 
                 var input = parseText(text);
@@ -123,10 +107,7 @@ function parseText(text) {
     }
     else if (text) {
         for (var j in greetings) {
-            //console.log(greetings[j]);
-            //console.log(text);
-            //console.log(text.indexOf(greetings[j]));
-            //console.log(text.indexOf(greetings[j]) > -1);
+
             if (text.indexOf(greetings[j]) > -1) {
                 input = 'greetings' ;
                 break;
@@ -138,7 +119,7 @@ function parseText(text) {
             else {
                 input = 'random' ;
             }
-            //console.log(input);
+
 
         }
     }
@@ -213,11 +194,9 @@ function categorySource(category) {
 }
 
 function getMessageData(topNews) {
-    //console.log('B4 json parse' + topNews);
-    //topNews=JSON.parse(topNews);
-    //stringToWorkWith = stringToWorkWith["articles"];
+
     console.log('Im in here');
-    //console.log(topNews.status);
+
      var parsedData = '[';
     for (var key in topNews) {
         console.log(key);
@@ -247,7 +226,7 @@ function getMessageData(topNews) {
         }
     }
     parsedData = parsedData + ']';
-    //console.log(parsedData);
+
     return parsedData;
 }
 
@@ -258,7 +237,7 @@ function sendGenericMessage(sender,input) {
     var category;
     var messageData = '';
     var movie='';
-    //console.log(input.substring(0,input.indexOf('news')-1));
+
     if (input.indexOf('imdb') == 0) {
         console.log('in imdb');
 
@@ -298,7 +277,7 @@ function sendGenericMessage(sender,input) {
             json: true
         }, function (error, response, body) {
 
-            //console.log(body);
+
             if (!error && response.statusCode === 200) {
                 //console.log(JSON.stringify(body));
                 topNews = getMessageData(body);
@@ -326,39 +305,6 @@ function sendGenericMessage(sender,input) {
         })
     }
 
-
-    //messageData=getMessageData(topNews);
-
-   /* var messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Giants-Mets is dream matchup",
-                    "subtitle": "You can't ask for more when you get two of the game's best pitchers battling in an elimination game. Time to break down the NL wild-card game (8 p.m. ET, ESPN/WatchESPN)",
-                    "image_url": "http://a.espncdn.com/combiner/i?img=%2Fphoto%2F2016%2F0805%2Fr110586_1296x729_16%2D9.jpg",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "http://www.espn.com/mlb/story/_/page/playoffs16_NLWC5Qs",
-                        "title": "Open this in browser"
-                    }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
-        }
-    } */
-
-   //console.log("asdf : "+messageData.attachment.payload.elements);
-    //console.log("asdf : "+JSON.parse(messageData));
 
 
 }
